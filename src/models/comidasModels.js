@@ -4,13 +4,13 @@ const prisma = new PrismaClient();
 export const encontrarTodos = async () => {
 
     return await prisma.comida.findMany({
-        orderBy: {id: Number(id)}
+        orderBy: {id: 'asc'}
     })
 }
 
 export const encontrarUm = async (id) => {
     return await prisma.comida.findUnique({
-        where: {id: Number(id)}
+        where: {id: id}
     })
 }
 
