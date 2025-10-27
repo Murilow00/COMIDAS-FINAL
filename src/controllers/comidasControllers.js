@@ -38,9 +38,24 @@ export const listarUm = async (req,res) => {
                 id: id,
             })
         }
-
         res.status(200).json({
-            message: "Comida encontrada"
+            message: "Comida encontrada",
+            data: comi
         })
+    } catch (error) {
+        res.status(500).json({
+            erro: "erro interno de servidor",
+            detalhes: error.message,
+            codigo: 500
+        })
+    }
+}
+
+export const criar = async (req, res) => {
+    try {
+        const {nome, valor} = req.body;
+        const data = {nome, valor};
+        const camposObrigatorios = ["nome", "valor"];
+        const faltando = camposObrigatorios.filter((campo) => !data[campo]);
     }
 }
