@@ -7,7 +7,7 @@ router.get("/", ComidasController.listarTodos);
 router.get("/:id", ComidasController.listarUm);
 router.post("/",ComidasController.criar);
 router.delete("/:id",ComidasController.deletar);
-
+router.put("/:id",ComidasController.atualizar);
 
 
 

@@ -12,7 +12,7 @@ datasource db {
 model Comida {
   id              Int      @id @default(autoincrement())
   nome            String
-  valor           Number
+  valor           String
   
   @@map("comidas")
 }

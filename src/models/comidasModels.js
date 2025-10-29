@@ -29,3 +29,13 @@ export const deletarComida = async (id) => {
         where: {id: Number(id)}
     })
 }
+
+export const atualizar = async (id, dado) => {
+    return await prisma.comida.update({
+        where: { id: Number(id)},
+        data: {
+            ...(dado.nome && { nome: dado.nome}),
+            ...(dado.preco && { preco: dado.preco}), 
+        }
+    })
+}

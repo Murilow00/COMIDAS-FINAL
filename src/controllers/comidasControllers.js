@@ -108,3 +108,32 @@ export const deletar = async (req, res) => {
     });
   }
 };
+
+
+export const atualizar = async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    const dados = req.body;
+
+    const comidaExiste = await comidasModels.encontrarUm(id);
+
+    if (!comidaExiste) {
+      return res.status(404).json({
+        erro: "Comida não existe!",
+        id: id,
+      });
+    }
+
+    const comidaAtualizado = await comidasModels.atualizar(id, dados);
+
+    res.status(200).json({
+        mensagem: 'Comida atualizado com sucesso!',
+        comida: comidaAtualizado
+    });
+  } catch (error) {
+    res.status(500).json({
+      erro: "Erro ao atualizar comida",
+      detalhes: error.message,
+    });
+  }
+};
