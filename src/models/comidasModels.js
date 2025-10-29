@@ -18,7 +18,7 @@ export const criarComida = async (dado) => {
     return await prisma.comida.create({
         data: {
             nome: dado.nome,
-            valor: dado.nome
+            valor: dado.valor
         }
     })
 }
