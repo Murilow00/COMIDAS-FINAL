@@ -80,3 +80,31 @@ export const criar = async (req, res) => {
     });
   }
 };
+
+export const deletar = async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+
+  
+    const comidaExiste = await comidasModels.encontrarUm(id)
+
+    if (!comidaExiste) {
+      return res.status(404).json({
+        erro: "Comida não encontrado com esse id",
+        id: id,
+      });
+    }
+
+    await comidasModels.deletarComida(id);
+
+    res.status(200).json({
+      mensagem: "Comida apagado com sucesso!",
+      comidaRemovido: comidaExiste,
+    });
+  } catch (error) {
+    res.status(500).json({
+      erro: "Erro ao apagar comida",
+      detalhes: error.message,
+    });
+  }
+};
